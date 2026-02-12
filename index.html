@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BCA Study Hub</title>
+    <style>
+         :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f7fa;
+            --dark-color: #222;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--secondary-color);
+            margin: 0;
+            color: var(--dark-color);
+        }
+        
+        header {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        header h1 {
+            margin: 0;
+            font-weight: 700;
+        }
+        
+        nav button {
+            background: white;
+            border: none;
+            padding: 8px 15px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        nav button:hover {
+            background: #dde9fb;
+        }
+        
+        main {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px 50px;
+        }
+        /* Home Page */
+        
+        #home h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        #home p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #3b78cc;
+        }
+        /* Feature Boxes */
+        
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 40px 0 20px;
+            gap: 20px;
+        }
+        
+        .feature-box {
+            background: #ffffff;
+            padding: 20px;
+            flex: 1 1 250px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-box h3 {
+            margin-bottom: 10px;
+        }
+        /* Counters */
+        
+        .counters {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .counters div {
+            flex: 1 1 150px;
+        }
+        
+        .counter {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        /* CTA */
+        
+        .cta {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+            text-align: center;
+            border-radius: 8px;
+        }
+        
+        .cta .btn {
+            background: #fff;
+            color: var(--primary-color);
+            margin-top: 15px;
+        }
+        
+        .cta .btn:hover {
+            background: #ddd;
+        }
+        /* Notes Section */
+        
+        #notes {
+            display: none;
+        }
+        
+        #notes h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .filters {
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .filters button {
+            background: #ddd;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .filters button.active,
+        .filters button:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        #search-notes {
+            padding: 10px;
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 25px;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .notes-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .notes-list li {
+            background: white;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 7px;
+            box-shadow: 0 3px 7px rgb(0 0 0 / 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .notes-list li div {
+            max-width: 80%;
+        }
+        
+        .notes-list li h4 {
+            margin: 0 0 5px 0;
+        }
+        
+        .notes-list li p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .notes-list li a {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .notes-list li a:hover {
+            background: #3b78cc;
+        }
+        /* Login/Register */
+        
+        #auth {
+            max-width: 400px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px 25px;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgb(0 0 0 / 0.1);
+            display: none;
+        }
+        
+        #auth h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        #auth form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #auth label {
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        #auth input[type="text"],
+        #auth input[type="email"],
+        #auth input[type="password"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        #auth button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 0;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        #auth button:hover {
+            background: #3b78cc;
+        }
+        
+        #auth .switch-auth {
+            margin-top: 15px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        /* Responsive */
+        
+        @media (max-width: 600px) {
+            .features {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .counters {
+                flex-direction: column;
+                gap: 15px;
+            }
+            header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            nav button {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>BCA Study Hub</h1>
+        <nav>
+            <button id="nav-home">Home</button>
+            <button id="nav-notes">Notes</button>
+            <button id="nav-login">Login/Register</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <section id="home">
+            <h2>Welcome to BCA Study Hub</h2>
+            <p>Your one-stop platform to share and access semester-wise notes with your batchmates.</p>
+            <a href="#" class="btn" id="btn-explore">Explore Notes</a>
+
+            <!-- Feature Highlights -->
+            <div class="features">
+                <div class="feature-box">
+                    <h3>📚 100+ Notes</h3>
+                    <p>Semester-wise categorized notes uploaded by students.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>👩‍🎓 Collaborative</h3>
+                    <p>Upload and share notes with your classmates easily.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔒 Free & Secure</h3>
+                    <p>Simple login & local data — no payment or risk involved.</p>
+                </div>
+            </div>
+
+            <!-- Animated Counters -->
+            <div class="counters">
+                <div>
+                    <h2><span class="counter" data-target="129">0</span>+</h2>
+                    <p>Notes Uploaded</p>
+                </div>
+                <div>
+                    <h2><span class="counter" data-target="87">0</span>+</h2>
+                    <p>Registered Students</p>
+                </div>
+                <div>
+                    <h2><span class="counter" data-target="6">0</span></h2>
+                    <p>Semesters Covered</p>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="cta">
+                <h3>Start sharing your notes today!</h3>
+                <p>It helps your batchmates and improves your own understanding. Win-win!</p>
+                <a href="#" class="btn" id="btn-cta-upload">Upload Notes</a>
+            </div>
+        </section>
+
+        <!-- NOTES PAGE -->
+        <section id="notes">
+            <h2>Explore Notes</h2>
+
+            <div class="filters" id="semester-filters">
+                <button class="active" data-semester="all">All Semesters</button>
+                <button data-semester="1st">1st Semester</button>
+                <button data-semester="2nd">2nd Semester</button>
+                <button data-semester="3rd">3rd Semester</button>
+                <button data-semester="4th">4th Semester</button>
+                <button data-semester="5th">5th Semester</button>
+                <button data-semester="6th">6th Semester</button>
+            </div>
+
+            <input type="text" id="search-notes" placeholder="Search notes by subject or title..." autocomplete="off" />
+
+            <ul class="notes-list" id="notes-list"></ul>
+        </section>
+
+        <!-- LOGIN/REGISTER PAGE -->
+        <section id="auth">
+            <h2 id="auth-title">Student Login</h2>
+            <form id="auth-form">
+                <div id="register-fields" style="display:none;">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Full Name" />
+                </div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email address" required />
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password" required />
+                <button type="submit" id="auth-submit">Login</button>
+            </form>
+            <div class="switch-auth" id="switch-auth">Don't have an account? Register here</div>
+        </section>
+    </main>
+
+    <script>
+        // Note Data
+        const notes = [{
+                title: "Mathematics - Calculus Notes",
+                subject: "Mathematics",
+                semester: "1st",
+                file: "assets/mathematics_calculus.pdf"
+            }, {
+                title: "Mathematics - Linear Algebra",
+                subject: "Mathematics",
+                semester: "2nd",
+                file: "assets/mathematics_linear_algebra.pdf"
+            },
+
+            {
+                title: "Programming Principle & Algorithm - Basics",
+                subject: "Programming Principle & Algorithm",
+                semester: "1st",
+                file: "assets/ppa_basics.pdf"
+            }, {
+                title: "Programming Principle & Algorithm - Advanced",
+                subject: "Programming Principle & Algorithm",
+                semester: "3rd",
+                file: "assets/ppa_advanced.pdf"
+            },
+
+            {
+                title: "C Programming - Fundamentals",
+                subject: "C Programming",
+                semester: "1st",
+                file: "assets/c_programming_fundamentals.pdf"
+            }, {
+                title: "C Programming - Pointers and Memory",
+                subject: "C Programming",
+                semester: "2nd",
+                file: "assets/c_programming_pointers.pdf"
+            },
+
+            {
+                title: "Object-Oriented Programming (C++) - Intro",
+                subject: "Object-Oriented Programming (C++)",
+                semester: "3rd",
+                file: "assets/oop_intro.pdf"
+            }, {
+                title: "Object-Oriented Programming (C++) - Advanced Concepts",
+                subject: "Object-Oriented Programming (C++)",
+                semester: "4th",
+                file: "assets/oop_advanced.pdf"
+            },
+
+            {
+                title: "Digital Electronics - Logic Gates",
+                subject: "Digital Electronics",
+                semester: "2nd",
+                file: "assets/digital_electronics_logic_gates.pdf"
+            }, {
+                title: "Digital Electronics - Flip Flops",
+                subject: "Digital Electronics",
+                semester: "3rd",
+                file: "assets/digital_electronics_flip_flops.pdf"
+            },
+
+            {
+                title: "Database Management Systems (DBMS) - ER Model",
+                subject: "Database Management Systems (DBMS)",
+                semester: "3rd",
+                file: "assets/dbms_er_model.pdf"
+            }, {
+                title: "Database Management Systems (DBMS) - SQL Queries",
+                subject: "Database Management Systems (DBMS)",
+                semester: "4th",
+                file: "assets/dbms_sql_queries.pdf"
+            },
+
+            {
+                title: "Java Programming - Basics",
+                subject: "Java Programming",
+                semester: "4th",
+                file: "assets/java_basics.pdf"
+            }, {
+                title: "Java Programming - OOP Concepts",
+                subject: "Java Programming",
+                semester: "5th",
+                file: "assets/java_oop_concepts.pdf"
+            },
+
+            {
+                title: "Operating Systems - Process Management",
+                subject: "Operating Systems",
+                semester: "5th",
+                file: "assets/os_process_management.pdf"
+            }, {
+                title: "Operating Systems - Memory Management",
+                subject: "Operating Systems",
+                semester: "6th",
+                file: "assets/os_memory_management.pdf"
+            },
+
+            {
+                title: "Computer Networks - Networking Basics",
+                subject: "Computer Networks",
+                semester: "5th",
+                file: "assets/computer_networks_basics.pdf"
+            }, {
+                title: "Computer Networks - TCP/IP Model",
+                subject: "Computer Networks",
+                semester: "6th",
+                file: "assets/computer_networks_tcpip.pdf"
+            },
+
+            {
+                title: "Software Engineering - SDLC",
+                subject: "Software Engineering",
+                semester: "6th",
+                file: "assets/software_engineering_sdlc.pdf"
+            }, {
+                title: "Software Engineering - Agile Methodology",
+                subject: "Software Engineering",
+                semester: "6th",
+                file: "assets/software_engineering_agile.pdf"
+            },
+        ];
+
+        // Page elements
+        const sections = {
+            home: document.getElementById('home'),
+            notes: document.getElementById('notes'),
+            auth: document.getElementById('auth'),
+        };
+
+        const navHome = document.getElementById('nav-home');
+        const navNotes = document.getElementById('nav-notes');
+        const navLogin = document.getElementById('nav-login');
+
+        const notesList = document.getElementById('notes-list');
+        const semesterFilters = document.getElementById('semester-filters');
+        const searchInput = document.getElementById('search-notes');
+
+        // Auth
+        const authForm = document.getElementById('auth-form');
+        const authTitle = document.getElementById('auth-title');
+        const registerFields = document.getElementById('register-fields');
+        const authSubmit = document.getElementById('auth-submit');
+        const switchAuth = document.getElementById('switch-auth');
+
+        let currentSemester = 'all';
+        let isRegister = false;
+
+        // Show section function
+        function showSection(sectionName) {
+            for (const key in sections) {
+                sections[key].style.display = key === sectionName ? 'block' : 'none';
+            }
+        }
+
+        // Render notes list
+        function renderNotes() {
+            const searchTerm = searchInput.value.toLowerCase();
+
+            let filteredNotes = notes.filter(note => {
+                const semesterMatch = currentSemester === 'all' || note.semester === currentSemester;
+                const searchMatch = note.title.toLowerCase().includes(searchTerm) || note.subject.toLowerCase().includes(searchTerm);
+                return semesterMatch && searchMatch;
+            });
+
+            if (filteredNotes.length === 0) {
+                notesList.innerHTML = '<li>No notes found matching your criteria.</li>';
+                return;
+            }
+
+            notesList.innerHTML = filteredNotes.map(note => `
+      <li>
+        <div>
+          <h4>${note.title}</h4>
+          <p><strong>Subject:</strong> ${note.subject} | <strong>Semester:</strong> ${note.semester}</p>
+        </div>
+        <a href="${note.file}" target="_blank" download>Download</a>
+      </li>
+    `).join('');
+        }
+
+        // Semester filter buttons
+        semesterFilters.addEventListener('click', e => {
+            if (e.target.tagName === 'BUTTON') {
+                [...semesterFilters.children].forEach(btn => btn.classList.remove('active'));
+                e.target.classList.add('active');
+                currentSemester = e.target.getAttribute('data-semester');
+                renderNotes();
+            }
+        });
+
+        // Search input event
+        searchInput.addEventListener('input', renderNotes);
+
+        // Navigation buttons
+        navHome.addEventListener('click', () => {
+            showSection('home');
+        });
+
+        navNotes.addEventListener('click', () => {
+            showSection('notes');
+            renderNotes();
+        });
+
+        navLogin.addEventListener('click', () => {
+            showSection('auth');
+        });
+
+        // Buttons on home page
+        document.getElementById('btn-explore').addEventListener('click', e => {
+            e.preventDefault();
+            navNotes.click();
+        });
+
+        document.getElementById('btn-cta-upload').addEventListener('click', e => {
+            e.preventDefault();
+            navLogin.click();
+        });
+
+        // Auth form toggle
+        switchAuth.addEventListener('click', () => {
+            isRegister = !isRegister;
+            if (isRegister) {
+                authTitle.textContent = 'Student Register';
+                authSubmit.textContent = 'Register';
+                registerFields.style.display = 'block';
+                switchAuth.textContent = 'Already have an account? Login here';
+            } else {
+                authTitle.textContent = 'Student Login';
+                authSubmit.textContent = 'Login';
+                registerFields.style.display = 'none';
+                switchAuth.textContent = "Don't have an account? Register here";
+            }
+        });
+
+        // Simple Auth form submit (only frontend, no backend)
+        authForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const email = authForm.email.value.trim();
+            const password = authForm.password.value.trim();
+            const name = authForm.name.value.trim();
+
+            if (isRegister) {
+                if (!name) {
+                    alert('Please enter your full name');
+                    return;
+                }
+                alert(`Registration successful!\nName: ${name}\nEmail: ${email}`);
+                authForm.reset();
+                switchAuth.click(); // switch to login after registration
+            } else {
+                // For demo, just check non-empty
+                if (!email || !password) {
+                    alert('Please enter email and password');
+                    return;
+                }
+                alert(`Welcome back!\nEmail: ${email}`);
+                authForm.reset();
+                showSection('home');
+            }
+        });
+
+        // Animated counters on homepage
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                let count = 0;
+                const step = target / 100;
+                const interval = setInterval(() => {
+                    count += step;
+                    if (count >= target) {
+                        counter.textContent = target;
+                        clearInterval(interval);
+                    } else {
+                        counter.textContent = Math.ceil(count);
+                    }
+                }, 20);
+            });
+        }
+
+        // Initial load
+        showSection('home');
+        animateCounters();
+    </script>
+
+</body>
+
+</html>
